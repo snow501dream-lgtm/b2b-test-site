@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You — HengXin Industrial</title>
+  <meta name="description" content="Your inquiry has been submitted successfully.">
+
+  <!-- Google Tag Manager — Replace GTM-XXXXXXX with your container ID -->
+
+  <!-- End Google Tag Manager -->
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <img src="https://picsum.photos/seed/hengxin-logo/88/88" alt="HengXin Logo" width="44" height="44">
+        HengXin Industrial
+      </a>
+      <nav>
+        <ul class="main-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/products.html">Products</a></li>
+          <li><a href="/product-detail.html">Detail</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-contact">
+        <a href="tel:+8675588888888" class="header-phone">+86 755 8888 8888</a>
+        <a href="/contact.html" class="btn btn-primary btn-sm btn-cta" data-cta="header_get_quote">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Thank You Content -->
+  <section class="thankyou-section">
+    <div class="thankyou-card">
+      <div class="check-icon">&#10003;</div>
+      <h2>Inquiry Submitted!</h2>
+      <p>Thank you for your inquiry. Our sales team will review your requirements and get back to you within <strong>24 hours</strong>.</p>
+      <p style="font-size:14px; color:var(--text-light);">Reference number: <strong id="ref-number"></strong></p>
+      <a href="/" class="btn btn-primary" style="margin-top:12px;">Back to Home</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>HengXin Industrial Co., Ltd.</h4>
+          <p>Your trusted partner for precision industrial components.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products.html">Products</a></li>
+            <li><a href="/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="/product-detail.html">Ball Bearings</a></li>
+            <li><a href="/product-detail.html">Hydraulic Cylinders</a></li>
+            <li><a href="/product-detail.html">CNC Machined Parts</a></li>
+            <li><a href="/product-detail.html">Connectors</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p>
+            <a href="tel:+8675588888888">+86 755 8888 8888</a><br>
+            <a href="mailto:info@hengxin-industrial.com">info@hengxin-industrial.com</a><br>
+            No. 88, Fuyong Industrial Park<br>
+            Bao'an District, Shenzhen, China
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2024 HengXin Industrial Co., Ltd. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Generate a random reference number for realism
+    document.getElementById('ref-number').textContent = 'RFQ-' + Date.now().toString(36).toUpperCase();
+  </script>
+</body>
+</html>
