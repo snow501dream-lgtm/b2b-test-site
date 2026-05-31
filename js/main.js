@@ -14,26 +14,32 @@ document.addEventListener('DOMContentLoaded', function () {
     inquiryForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Collect form data
       var name = inquiryForm.querySelector('[name="name"]').value;
       var email = inquiryForm.querySelector('[name="email"]').value;
       var company = inquiryForm.querySelector('[name="company"]').value;
+      var product = inquiryForm.querySelector('[name="product"]').value;
       var message = inquiryForm.querySelector('[name="message"]').value;
 
-      // Push to dataLayer — used for GTM triggers and GA4 events
+      var formData = { name: name, email: email, company: company, product: product, message: message };
+
+      // Push to dataLayer
       window.dataLayer.push({
         event: 'form_submit',
         form_type: 'inquiry',
-        form_data: {
-          name: name,
-          email: email,
-          company: company,
-          message: message
-        }
+        form_data: formData
       });
 
-      // Redirect to thank-you page (conversion destination)
-      window.location.href = '/thank-you.html';
+      // Send to backend API
+      fetch('/api/submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      }).then(function () {
+        window.location.href = '/thank-you.html';
+      }).catch(function () {
+        // Still redirect even if API fails
+        window.location.href = '/thank-you.html';
+      });
     });
   }
 

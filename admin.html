@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submissions Admin — Ads Tutorials</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-wrap { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .admin-table { width: 100%; background: #fff; border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; }
+    .admin-table th, .admin-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .admin-table th { background: var(--primary); color: #fff; font-weight: 600; }
+    .admin-table tr:hover td { background: #f8f9fb; }
+    .admin-table .msg-cell { max-width: 260px; white-space: pre-wrap; word-break: break-word; }
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--text-light); }
+    .badge { background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 12px; }
+    .btn-danger { background: #e74c3c; color: #fff; }
+    .btn-danger:hover { background: #c0392b; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">Ads Tutorials</a>
+      <nav>
+        <ul class="main-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/products.html">Products</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/admin.html" class="active">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h2>Inquiry Submissions</h2>
+      <div>
+        <button class="btn btn-sm" onclick="refresh()" style="margin-right:8px;">Refresh</button>
+        <button class="btn btn-sm btn-danger" onclick="clearAll()">Clear All</button>
+      </div>
+    </div>
+    <div id="loading" style="text-align:center;padding:40px;">Loading...</div>
+    <table class="admin-table" id="table" style="display:none;">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Company</th>
+          <th>Product</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty-state" id="empty" style="display:none;">
+      <p>No submissions yet.</p>
+      <p style="font-size:14px;">Fill out the <a href="/contact.html">contact form</a> to create test data.</p>
+    </div>
+  </div>
+
+  <script>
+    var API = '/api/submissions?key=ads2024';
+
+    function refresh() {
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('table').style.display = 'none';
+      document.getElementById('empty').style.display = 'none';
+
+      fetch(API)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          document.getElementById('loading').style.display = 'none';
+          if (!data.length) {
+            document.getElementById('empty').style.display = 'block';
+            return;
+          }
+          var tbody = document.getElementById('tbody');
+          tbody.innerHTML = '';
+          data.reverse().forEach(function (s) {
+            var tr = document.createElement('tr');
+            tr.innerHTML =
+              '<td>' + new Date(s.created_at).toLocaleString() + '</td>' +
+              '<td>' + esc(s.name) + '</td>' +
+              '<td><a href="mailto:' + esc(s.email) + '">' + esc(s.email) + '</a></td>' +
+              '<td>' + esc(s.company || '-') + '</td>' +
+              '<td>' + esc(s.product || '-') + '</td>' +
+              '<td class="msg-cell">' + esc(s.message) + '</td>';
+            tbody.appendChild(tr);
+          });
+          document.getElementById('table').style.display = '';
+        })
+        .catch(function () {
+          document.getElementById('loading').textContent = 'Failed to load. Make sure to append ?key=ads2024 to the API URL.';
+        });
+    }
+
+    function clearAll() {
+      if (!confirm('Delete all submissions?')) return;
+      fetch(API, { method: 'DELETE' })
+        .then(function () { refresh(); });
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    refresh();
+  </script>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/8675588888888" class="whatsapp-float" target="_blank" rel="noopener" data-platform="whatsapp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+    Chat on WhatsApp
+  </a>
+</body>
+</html>
