@@ -1,5 +1,5 @@
 /**
- * HengXin Industrial — Main Scripts
+ * Ads Tutorials — Main Scripts
  * B2B Foreign Trade Demo Site for GTM Course
  */
 
