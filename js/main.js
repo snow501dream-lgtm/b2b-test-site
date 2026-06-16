@@ -118,3 +118,69 @@ function searchProducts() {
     noResult.style.display = found ? 'none' : 'block';
   }
 }
+
+// ---------- B2B Purchase Flow ----------
+var b2bCurrentOrder = null;
+
+function openB2bOrder(productId, productName, price) {
+  b2bCurrentOrder = { id: productId, name: productName, price: price };
+  document.getElementById('b2b-checkout-product-name').textContent = productName + ' — $' + price.toFixed(2);
+  document.getElementById('b2b-checkout-overlay').classList.add('open');
+
+  window.dataLayer.push({
+    event: 'begin_checkout',
+    ecommerce: {
+      currency: 'USD',
+      value: price,
+      items: [{ item_id: productId, item_name: productName, price: price, quantity: 1 }]
+    }
+  });
+}
+
+function closeB2bOrder() {
+  document.getElementById('b2b-checkout-overlay').classList.remove('open');
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var b2bForm = document.getElementById('b2b-checkout-form');
+  if (b2bForm) {
+    b2bForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!b2bCurrentOrder) return;
+
+      var name = b2bForm.querySelector('[name="name"]').value;
+      var email = b2bForm.querySelector('[name="email"]').value;
+      var company = b2bForm.querySelector('[name="company"]').value;
+      var qty = parseInt(b2bForm.querySelector('[name="qty"]').value) || 1;
+      var total = b2bCurrentOrder.price * qty;
+      var txnId = 'PO-' + Date.now().toString(36).toUpperCase();
+
+      window.dataLayer.push({
+        event: 'purchase',
+        ecommerce: {
+          transaction_id: txnId,
+          value: total,
+          currency: 'USD',
+          items: [{
+            item_id: b2bCurrentOrder.id,
+            item_name: b2bCurrentOrder.name,
+            price: b2bCurrentOrder.price,
+            quantity: qty
+          }],
+          user_data: { name: name, email: email, company: company }
+        }
+      });
+
+      // Show confirmation
+      closeB2bOrder();
+      b2bForm.reset();
+      document.getElementById('b2b-confirm').classList.add('show');
+      document.getElementById('b2b-order-id').textContent = txnId;
+      document.getElementById('b2b-confirm-product').textContent = b2bCurrentOrder.name + ' × ' + qty;
+      document.getElementById('b2b-confirm-value').textContent = '$' + total.toFixed(2);
+      document.getElementById('b2b-confirm').scrollIntoView({ behavior: 'smooth' });
+
+      b2bCurrentOrder = null;
+    });
+  }
+});
