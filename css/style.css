@@ -405,6 +405,12 @@ img {
   font-size: 14px;
   line-height: 2;
 }
+.footer-grid p a {
+  color: var(--white);
+}
+.footer-grid p a:hover {
+  color: var(--accent);
+}
 
 .footer-grid ul {
   list-style: none;
