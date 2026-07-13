@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Request Form — Ads Tutorials</title>
   <meta name="description" content="Submit a data access, correction, or deletion request under applicable privacy regulations.">
+  <!-- Google reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcgPFEtAAAAAMsUX3VzYJMdjDY3Mg_V_vcIfneq"></script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
   new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
@@ -54,6 +56,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div style="background:var(--white);padding:40px;border-radius:var(--radius);box-shadow:var(--shadow);">
         <form action="/thank-you.html" method="POST" data-form-type="data_request" netlify>
+          <input type="hidden" name="recaptcha_token" id="recaptcha-token">
 
           <div class="form-group">
             <label for="email">Email Address *</label>
@@ -74,6 +77,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </p>
 
           <button type="submit" class="btn btn-primary btn-lg t-form-submit" style="width:100%;">Submit Request</button>
+          <p style="font-size:11px;color:#999;text-align:center;margin-top:12px;">
+            This site is protected by reCAPTCHA — <a href="https://policies.google.com/privacy" style="color:#999;">Google Privacy Policy</a> &amp; <a href="https://policies.google.com/terms" style="color:#999;">Terms</a> apply.
+          </p>
         </form>
       </div>
 

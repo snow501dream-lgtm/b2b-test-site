@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us — Ads Tutorials</title>
   <meta name="description" content="Get in touch with Ads Tutorials. Send an inquiry, call, email, or chat with us on WhatsApp.">
+  <!-- Google reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcgPFEtAAAAAMsUX3VzYJMdjDY3Mg_V_vcIfneq"></script>
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
 new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
@@ -79,6 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="form-wrap">
         <h2 style="text-align:center; color:var(--primary); margin-bottom:24px;">Send an Inquiry</h2>
         <form id="inquiry-form">
+          <input type="hidden" name="recaptcha_token" id="recaptcha-token">
           <div class="form-group">
             <label for="name">Your Name *</label>
             <input type="text" id="name" name="name" required placeholder="John Smith">
@@ -108,6 +111,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <textarea id="message" name="message" required placeholder="Please describe your requirements, quantity, and target price if any..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-lg t-form-submit" style="width:100%;">Submit Inquiry</button>
+          <p style="font-size:11px;color:#999;text-align:center;margin-top:12px;">
+            This site is protected by reCAPTCHA — <a href="https://policies.google.com/privacy" style="color:#999;">Google Privacy Policy</a> &amp; <a href="https://policies.google.com/terms" style="color:#999;">Terms</a> apply.
+          </p>
         </form>
       </div>
 

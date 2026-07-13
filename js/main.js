@@ -6,39 +6,74 @@
 // Initialize GTM dataLayer (creates it if not present)
 window.dataLayer = window.dataLayer || [];
 
+// ── reCAPTCHA v3 helper ──
+var SITE_KEY = '6LcgPFEtAAAAAMsUX3VzYJMdjDY3Mg_V_vcIfneq';
+
+function getRecaptchaToken(action) {
+  return new Promise(function(resolve, reject) {
+    grecaptcha.ready(function() {
+      grecaptcha.execute(SITE_KEY, { action: action }).then(function(token) {
+        resolve(token);
+      }).catch(reject);
+    });
+  });
+}
+
 // ---------- Form Handler (Contact page) ----------
 document.addEventListener('DOMContentLoaded', function () {
 
-  const inquiryForm = document.getElementById('inquiry-form');
+  var inquiryForm = document.getElementById('inquiry-form');
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var name = inquiryForm.querySelector('[name="name"]').value;
-      var email = inquiryForm.querySelector('[name="email"]').value;
-      var company = inquiryForm.querySelector('[name="company"]').value;
-      var product = inquiryForm.querySelector('[name="product"]').value;
-      var message = inquiryForm.querySelector('[name="message"]').value;
+      // Generate reCAPTCHA token before submitting
+      getRecaptchaToken('inquiry').then(function(token) {
+        document.getElementById('recaptcha-token').value = token;
 
-      var formData = { name: name, email: email, company: company, product: product, message: message };
+        var name = inquiryForm.querySelector('[name="name"]').value;
+        var email = inquiryForm.querySelector('[name="email"]').value;
+        var company = inquiryForm.querySelector('[name="company"]').value;
+        var product = inquiryForm.querySelector('[name="product"]').value;
+        var message = inquiryForm.querySelector('[name="message"]').value;
 
-      // Push to dataLayer
-      window.dataLayer.push({
-        event: 'form_submit',
-        form_type: 'inquiry',
-        form_data: formData
+        var formData = { name: name, email: email, company: company, product: product, message: message, recaptcha_token: token };
+
+        // Push to dataLayer
+        window.dataLayer.push({
+          event: 'form_submit',
+          form_type: 'inquiry',
+          form_data: formData
+        });
+
+        // Send to backend API
+        fetch('/api/submissions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        }).then(function () {
+          window.location.href = '/thank-you.html';
+        }).catch(function () {
+          window.location.href = '/thank-you.html';
+        });
+      }).catch(function() {
+        // reCAPTCHA failed — submit anyway with fallback
+        window.location.href = '/thank-you.html';
       });
+    });
+  }
 
-      // Send to backend API
-      fetch('/api/submissions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      }).then(function () {
-        window.location.href = '/thank-you.html';
-      }).catch(function () {
-        // Still redirect even if API fails
-        window.location.href = '/thank-you.html';
+  // ── Data Request Form Handler ──
+  var dataForm = document.querySelector('[data-form-type="data_request"]');
+  if (dataForm) {
+    dataForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      getRecaptchaToken('data_request').then(function(token) {
+        var tokenInput = dataForm.querySelector('[name="recaptcha_token"]');
+        if (tokenInput) tokenInput.value = token;
+        dataForm.submit();
+      }).catch(function() {
+        dataForm.submit();
       });
     });
   }
