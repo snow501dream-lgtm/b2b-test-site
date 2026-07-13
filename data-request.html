@@ -56,53 +56,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <form action="/thank-you.html" method="POST" data-form-type="data_request" netlify>
 
           <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="The email you used when contacting us">
+          </div>
+
+          <div class="form-group">
             <label for="request-type">Request Type *</label>
             <select id="request-type" name="request_type" required>
               <option value="">— Please Select —</option>
-              <option value="access">Access my personal data</option>
-              <option value="correction">Correct my personal data</option>
-              <option value="deletion">Delete my personal data</option>
+              <option value="access">Access my data</option>
+              <option value="deletion">Delete my data</option>
             </select>
-          </div>
-
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" required placeholder="Your full legal name">
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required placeholder="The email you used when submitting your information">
-          </div>
-
-          <div class="form-group">
-            <label for="company">Company Name</label>
-            <input type="text" id="company" name="company" placeholder="Your company name (optional)">
-          </div>
-
-          <div class="form-group">
-            <label for="country">Country of Residence *</label>
-            <select id="country" name="country" required>
-              <option value="">— Please Select —</option>
-              <option value="US">United States</option>
-              <option value="KR">South Korea</option>
-              <option value="SG">Singapore</option>
-              <option value="BY">Belarus</option>
-              <option value="CN">China</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="details">Request Details *</label>
-            <textarea id="details" name="details" required placeholder="Please describe your request in detail. For correction requests, specify what data needs to be corrected and provide the correct information. For deletion requests, specify the scope (e.g., specific inquiry records, all personal data, etc.)." style="min-height:120px;"></textarea>
           </div>
 
           <p style="font-size:13px;color:#888;margin-bottom:20px;">
-            We will verify your identity and respond within the legally required timeframe. This form is exclusively for data rights requests — for product inquiries, please use our <a href="/contact.html" style="color:var(--accent);">Contact page</a>.
+            We will verify your identity and respond within the legally required timeframe.
           </p>
 
-          <button type="submit" class="btn btn-primary btn-lg t-form-submit" style="width:100%;">Submit Data Request</button>
+          <button type="submit" class="btn btn-primary btn-lg t-form-submit" style="width:100%;">Submit Request</button>
         </form>
       </div>
 
