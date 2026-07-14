@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ads Tutorials — Precision Components Manufacturer</title>
   <meta name="description" content="Ads Tutorials supplies high-quality precision bearings, hydraulic components, CNC machined parts, and industrial connectors to global buyers.">
+  <!-- Silktide Consent Manager — Region-aware Defaults (before GTM) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    function stcmAccepted(id){try{return localStorage.getItem('consent-'+id)==='true'}catch(e){return false}}
+    function stcmRejected(id){try{return localStorage.getItem('consent-'+id)==='false'}catch(e){return false}}
+
+    // Strict Opt-in regions: Belarus (BY), South Korea (KR), Singapore (SG)
+    gtag('consent','default',{
+      analytics_storage: stcmAccepted('analytics')?'granted':'denied',
+      ad_storage: stcmAccepted('advertising')?'granted':'denied',
+      ad_user_data: stcmAccepted('advertising')?'granted':'denied',
+      ad_personalization: stcmAccepted('advertising')?'granted':'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500,
+      region: ['BY','KR','SG']
+    });
+
+    // Opt-out region: United States (US)
+    gtag('consent','default',{
+      analytics_storage: stcmRejected('analytics')?'denied':'granted',
+      ad_storage: stcmRejected('advertising')?'denied':'granted',
+      ad_user_data: stcmRejected('advertising')?'denied':'granted',
+      ad_personalization: stcmRejected('advertising')?'denied':'granted',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500,
+      region: ['US']
+    });
+  </script>
+  <!-- Silktide Consent Manager CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css">
+  <!-- Silktide Consent Manager JS -->
+  <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"></script>
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
 new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],

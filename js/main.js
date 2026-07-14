@@ -6,6 +6,18 @@
 // Initialize GTM dataLayer (creates it if not present)
 window.dataLayer = window.dataLayer || [];
 
+// ── Geo-detection: push user country to dataLayer ──
+(function(){
+  fetch('https://ipapi.co/json/')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      window.dataLayer.push({user_country: d.country_code || 'US', event: 'geo_resolved'});
+    })
+    .catch(function(){
+      window.dataLayer.push({user_country: 'US', event: 'geo_resolved'});
+    });
+})();
+
 // ── reCAPTCHA v3 helper ──
 var SITE_KEY = '6LcgPFEtAAAAAMsUX3VzYJMdjDY3Mg_V_vcIfneq';
 

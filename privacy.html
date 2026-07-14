@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Ads Tutorials</title>
   <meta name="description" content="Privacy Policy and data protection information.">
+  <!-- Silktide Consent Manager — Region-aware Defaults (before GTM) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    function stcmAccepted(id){try{return localStorage.getItem('consent-'+id)==='true'}catch(e){return false}}
+    function stcmRejected(id){try{return localStorage.getItem('consent-'+id)==='false'}catch(e){return false}}
+    gtag('consent','default',{analytics_storage:stcmAccepted('analytics')?'granted':'denied',ad_storage:stcmAccepted('advertising')?'granted':'denied',ad_user_data:stcmAccepted('advertising')?'granted':'denied',ad_personalization:stcmAccepted('advertising')?'granted':'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500,region:['BY','KR','SG']});
+    gtag('consent','default',{analytics_storage:stcmRejected('analytics')?'denied':'granted',ad_storage:stcmRejected('advertising')?'denied':'granted',ad_user_data:stcmRejected('advertising')?'denied':'granted',ad_personalization:stcmRejected('advertising')?'denied':'granted',functionality_storage:'granted',security_storage:'granted',wait_for_update:500,region:['US']});
+  </script>
+  <!-- Silktide Consent Manager CSS + JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css">
+  <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"></script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
