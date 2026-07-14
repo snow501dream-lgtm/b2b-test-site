@@ -8,7 +8,9 @@ window.dataLayer = window.dataLayer || [];
 
 // ── Geo-detection: push user country to dataLayer ──
 (function(){
-  fetch('https://ipapi.co/json/')
+  var controller = new AbortController();
+  setTimeout(function(){ controller.abort(); }, 3000);
+  fetch('https://ipapi.co/json/', {signal: controller.signal})
     .then(function(r){return r.json();})
     .then(function(d){
       window.dataLayer.push({user_country: d.country_code || 'US', event: 'geo_resolved'});

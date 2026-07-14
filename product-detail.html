@@ -5,16 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deep Groove Ball Bearing 6205 — Ads Tutorials</title>
   <meta name="description" content="Deep Groove Ball Bearing 6205 — chrome steel, C3 clearance, ISO 9001 certified. Request a quote or download the datasheet.">
-  <!-- Silktide Consent Manager — Region-aware Defaults (before GTM) -->
+    <!-- Silktide Consent Manager — Defaults (before GTM) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    function stcmAccepted(id){try{return localStorage.getItem('consent-'+id)==='true'}catch(e){return false}}
-    function stcmRejected(id){try{return localStorage.getItem('consent-'+id)==='false'}catch(e){return false}}
-    gtag('consent','default',{analytics_storage:stcmAccepted('analytics')?'granted':'denied',ad_storage:stcmAccepted('advertising')?'granted':'denied',ad_user_data:stcmAccepted('advertising')?'granted':'denied',ad_personalization:stcmAccepted('advertising')?'granted':'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500,region:['BY','KR','SG']});
-    gtag('consent','default',{analytics_storage:stcmRejected('analytics')?'denied':'granted',ad_storage:stcmRejected('advertising')?'denied':'granted',ad_user_data:stcmRejected('advertising')?'denied':'granted',ad_personalization:stcmRejected('advertising')?'denied':'granted',functionality_storage:'granted',security_storage:'granted',wait_for_update:500,region:['US']});
+    // Strict Opt-in (BY,SG,KR + EU/UK): all tracking denied until consent
+    gtag('consent','default',{
+      analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
+      functionality_storage:'granted',security_storage:'granted',
+      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO']
+    });
+    // Rest of world (US,CA etc): tracking granted unless user previously opted out via Silktide
+    gtag('consent','default',{
+      analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',
+      functionality_storage:'granted',security_storage:'granted',
+      wait_for_update:500
+    });
   </script>
-  <!-- Silktide Consent Manager CSS + JS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css">
   <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"></script>
   <!-- Google Tag Manager -->
@@ -209,7 +216,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="footer-bottom">
-        &copy; 2024 Ads Tutorials All Rights Reserved.copy; 2024 Ads Tutorials All Rights Reserved. <a href="/privacy.html" class="t-ftr-privacy" style="color:var(--white);margin-left:12px;">Privacy Policy</a>
+        &copy; 2024 Ads Tutorials All Rights Reserved. <a href="/privacy.html" class="t-ftr-privacy" style="color:var(--white);margin-left:12px;">Privacy Policy</a>
       </div>
     </div>
   </footer>

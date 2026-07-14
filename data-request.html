@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Request Form — Ads Tutorials</title>
   <meta name="description" content="Submit a data access, correction, or deletion request under applicable privacy regulations.">
+    <!-- Silktide Consent Manager — Defaults (before GTM) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // Strict Opt-in (BY,SG,KR + EU/UK): all tracking denied until consent
+    gtag('consent','default',{
+      analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
+      functionality_storage:'granted',security_storage:'granted',
+      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO']
+    });
+    // Rest of world (US,CA etc): tracking granted unless user previously opted out via Silktide
+    gtag('consent','default',{
+      analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',
+      functionality_storage:'granted',security_storage:'granted',
+      wait_for_update:500
+    });
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css">
+  <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"></script>
   <!-- Google reCAPTCHA v3 -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LcgPFEtAAAAAMsUX3VzYJMdjDY3Mg_V_vcIfneq"></script>
   <!-- Google Tag Manager -->

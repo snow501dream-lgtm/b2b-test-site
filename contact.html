@@ -5,40 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us — Ads Tutorials</title>
   <meta name="description" content="Get in touch with Ads Tutorials. Send an inquiry, call, email, or chat with us on WhatsApp.">
-  <!-- Silktide Consent Manager — Region-aware Defaults (before GTM) -->
+    <!-- Silktide Consent Manager — Defaults (before GTM) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    function stcmAccepted(id){try{return localStorage.getItem('consent-'+id)==='true'}catch(e){return false}}
-    function stcmRejected(id){try{return localStorage.getItem('consent-'+id)==='false'}catch(e){return false}}
-
-    // Strict Opt-in: Belarus (BY), South Korea (KR), Singapore (SG)
+    // Strict Opt-in (BY,SG,KR + EU/UK): all tracking denied until consent
     gtag('consent','default',{
-      analytics_storage: stcmAccepted('analytics')?'granted':'denied',
-      ad_storage: stcmAccepted('advertising')?'granted':'denied',
-      ad_user_data: stcmAccepted('advertising')?'granted':'denied',
-      ad_personalization: stcmAccepted('advertising')?'granted':'denied',
-      functionality_storage: 'granted',
-      security_storage: 'granted',
-      wait_for_update: 500,
-      region: ['BY','KR','SG']
+      analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
+      functionality_storage:'granted',security_storage:'granted',
+      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO']
     });
-
-    // Opt-out: United States (US)
+    // Rest of world (US,CA etc): tracking granted unless user previously opted out via Silktide
     gtag('consent','default',{
-      analytics_storage: stcmRejected('analytics')?'denied':'granted',
-      ad_storage: stcmRejected('advertising')?'denied':'granted',
-      ad_user_data: stcmRejected('advertising')?'denied':'granted',
-      ad_personalization: stcmRejected('advertising')?'denied':'granted',
-      functionality_storage: 'granted',
-      security_storage: 'granted',
-      wait_for_update: 500,
-      region: ['US']
+      analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',
+      functionality_storage:'granted',security_storage:'granted',
+      wait_for_update:500
     });
   </script>
-  <!-- Silktide Consent Manager CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.css">
-  <!-- Silktide Consent Manager JS -->
   <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.1/silktide-consent-manager.js"></script>
   <!-- Google reCAPTCHA v3 -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LcgPFEtAAAAAMsUX3VzYJMdjDY3Mg_V_vcIfneq"></script>
@@ -193,7 +177,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="footer-bottom">
-        &copy; 2024 Ads Tutorials All Rights Reserved.copy; 2024 Ads Tutorials All Rights Reserved. <a href="/privacy.html" class="t-ftr-privacy" style="color:var(--white);margin-left:12px;">Privacy Policy</a>
+        &copy; 2024 Ads Tutorials All Rights Reserved. <a href="/privacy.html" class="t-ftr-privacy" style="color:var(--white);margin-left:12px;">Privacy Policy</a>
       </div>
     </div>
   </footer>
