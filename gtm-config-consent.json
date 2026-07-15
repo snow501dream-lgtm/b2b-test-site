@@ -1,0 +1,104 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-14T12:00:00.000Z",
+  "containerVersion": {
+    "variable": [
+      {
+        "name": "dlv - user_country",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "false" },
+          { "type": "TEMPLATE", "key": "name", "value": "user_country" }
+        ]
+      },
+      {
+        "name": "regex - legal region archetype",
+        "type": "REM",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "input", "value": "{{dlv - user_country}}" },
+          { "type": "LIST", "key": "map", "list": [
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "pattern", "value": "^(BY|SG|KR|GB|DE|FR|IT|ES|PL|NL|BE|IE|AT|PT|SE|DK|FI|CZ|RO)$" },
+              { "type": "TEMPLATE", "key": "output", "value": "strict-opt-in" }
+            ]},
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "pattern", "value": "^(US|CA)$" },
+              { "type": "TEMPLATE", "key": "output", "value": "notice-opt-out" }
+            ]}
+          ]},
+          { "type": "BOOLEAN", "key": "fullMatch", "value": "true" },
+          { "type": "BOOLEAN", "key": "ignoreCase", "value": "true" },
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "none" }
+        ]
+      },
+      {
+        "name": "lookup - silktide mode",
+        "type": "SML",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "input", "value": "{{regex - legal region archetype}}" },
+          { "type": "LIST", "key": "map", "list": [
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "key", "value": "strict-opt-in" },
+              { "type": "TEMPLATE", "key": "val", "value": "opt-in" }
+            ]},
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "key", "value": "notice-opt-out" },
+              { "type": "TEMPLATE", "key": "val", "value": "opt-out" }
+            ]},
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "key", "value": "none" },
+              { "type": "TEMPLATE", "key": "val", "value": "opt-out" }
+            ]}
+          ]},
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "opt-out" }
+        ]
+      },
+      {
+        "name": "lookup - silktide banner description",
+        "type": "SML",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "input", "value": "{{regex - legal region archetype}}" },
+          { "type": "LIST", "key": "map", "list": [
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "key", "value": "strict-opt-in" },
+              { "type": "TEMPLATE", "key": "val", "value": "We require your active consent to use cookies for advertising and analytics." }
+            ]},
+            { "type": "MAP", "map": [
+              { "type": "TEMPLATE", "key": "key", "value": "notice-opt-out" },
+              { "type": "TEMPLATE", "key": "val", "value": "We use cookies for optimization. You have the right to opt-out of the sale or sharing of data." }
+            ]}
+          ]},
+          { "type": "TEMPLATE", "key": "defaultValue", "value": "" }
+        ]
+      }
+    ],
+    "trigger": [
+      {
+        "name": "Custom Event - stcm_consent_update",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "stcm_consent_update" }
+            ]
+          }
+        ]
+      }
+    ],
+    "tag": [
+      {
+        "name": "Consent - Silktide Initialization",
+        "type": "html",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "html", "value": "<script>\n(function(){\n  var a = '{{regex - legal region archetype}}';\n  if(a === 'none') return;\n\n  silktideConsentManager.init({\n    mode: '{{lookup - silktide mode}}',\n    text: {\n      title: 'Privacy Settings',\n      description: '{{lookup - silktide banner description}}'\n    },\n    consentTypes: [\n      { id: 'analytics', label: 'Analytics', gtag: 'analytics_storage' },\n      { id: 'advertising', label: 'Marketing', gtag: ['ad_storage','ad_user_data','ad_personalization'] }\n    ],\n    options: { expandedByDefault: a === 'strict-opt-in' }\n  });\n})();\n</script>" },
+          { "type": "BOOLEAN", "key": "supportDocumentWrite", "value": "true" }
+        ],
+        "firingTriggerId": ["1004"],
+        "tagFiringOption": "oncePerPage"
+      }
+    ]
+  }
+}
