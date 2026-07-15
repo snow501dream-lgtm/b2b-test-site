@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     gtag('consent','default',{
       analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
       functionality_storage:'granted',security_storage:'granted',
-      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO']
+      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO','BR','CH','ZA']
     });
     // Rest of world (US,CA etc): tracking granted unless user previously opted out via Silktide
     gtag('consent','default',{
@@ -111,6 +111,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="footer-bottom">
         &copy; 2024 Ads Tutorials All Rights Reserved. <a href="/privacy.html" class="t-ftr-privacy" style="color:var(--white);margin-left:12px;">Privacy Policy</a>
+        <a href="#" onclick="if(window.silktideConsentManager){silktideConsentManager.open();return false;}" style="color:var(--white);margin-left:12px;" class="t-ftr-cookies">Manage Cookie Preferences</a>
+        <a href="#" onclick="if(window.silktideConsentManager){silktideConsentManager.open();return false;}" style="color:var(--white);margin-left:12px;" class="t-ftr-dns">Do Not Sell or Share My Personal Information</a>
       </div>
     </div>
   </footer>

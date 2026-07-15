@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     gtag('consent','default',{
       analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
       functionality_storage:'granted',security_storage:'granted',
-      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO']
+      wait_for_update:500,region:['BY','SG','KR','GB','DE','FR','IT','ES','PL','NL','BE','IE','AT','PT','SE','DK','FI','CZ','RO','BR','CH','ZA']
     });
     // Rest of world (US,CA etc): tracking granted unless user previously opted out via Silktide
     gtag('consent','default',{
@@ -69,6 +69,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <p style="font-weight:700;color:var(--primary-dark);margin-bottom:24px;">Important Operational Note: We operate strictly as a heavy industrial equipment manufacturer specializing in direct factory sales. Our business operations completely exclude equipment rentals and technical after-sales servicing. All data collected on this website is processed solely within this manufacturing and sales scope.</p>
 
+        <h3>Legal Basis for Processing</h3>
+        <p>We process personal data under the following legal bases depending on your jurisdiction:</p>
+        <ul style="margin:12px 0 12px 24px;">
+          <li><strong>Consent:</strong> Marketing cookies and advertising tracking (GDPR Art.6.1.a, LGPD Art.7.I, POPIA, FADP) — you may withdraw consent at any time via our consent banner.</li>
+          <li><strong>Legitimate Interest:</strong> Essential security cookies, fraud prevention (reCAPTCHA), and basic website functionality (GDPR Art.6.1.f).</li>
+          <li><strong>Contractual Necessity:</strong> Processing inquiry form submissions to fulfill your quote and project requests.</li>
+        </ul>
+
         <h3>1. Information We Collect</h3>
         <p>We collect personal information that you voluntarily provide to us when you fill out forms on our website (such as requesting a technical quote, submitting a project specification framework, or contacting us). This information may include:</p>
         <ul style="margin:12px 0 12px 24px;">
@@ -86,20 +94,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Protect our communication channels and submission forms from spam and fraud via automated security tools, including Google reCAPTCHA.</li>
         </ul>
 
-        <h3 style="margin-top:24px;">3. Analytics and Advertising Cookies (Google Signals)</h3>
+        <h3 style="margin-top:24px;">3. Cookie Disclosure Table</h3>
+        <p>The following cookies and tracking technologies are used on this website:</p>
+        <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+          <thead>
+            <tr style="background:var(--primary);color:var(--white);">
+              <th style="padding:10px;text-align:left;border:1px solid var(--border);">Cookie / Technology</th>
+              <th style="padding:10px;text-align:left;border:1px solid var(--border);">Purpose</th>
+              <th style="padding:10px;text-align:left;border:1px solid var(--border);">Category</th>
+              <th style="padding:10px;text-align:left;border:1px solid var(--border);">Lifespan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--border);">Google Analytics 4 (_ga, _ga_*)</td>
+              <td style="padding:8px;border:1px solid var(--border);">Website traffic analysis, user engagement measurement</td>
+              <td style="padding:8px;border:1px solid var(--border);">Analytics</td>
+              <td style="padding:8px;border:1px solid var(--border);">2 years</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--border);">Google Ads (Conversion Linker, _gcl_*)</td>
+              <td style="padding:8px;border:1px solid var(--border);">Ad click measurement, conversion attribution</td>
+              <td style="padding:8px;border:1px solid var(--border);">Advertising</td>
+              <td style="padding:8px;border:1px solid var(--border);">90 days</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--border);">Silktide Consent Manager (stcm_*)</td>
+              <td style="padding:8px;border:1px solid var(--border);">Stores user consent preferences for cookie categories</td>
+              <td style="padding:8px;border:1px solid var(--border);">Essential (Functionality)</td>
+              <td style="padding:8px;border:1px solid var(--border);">12 months</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--border);">Google reCAPTCHA v3 (_grecaptcha)</td>
+              <td style="padding:8px;border:1px solid var(--border);">Bot detection and form spam protection</td>
+              <td style="padding:8px;border:1px solid var(--border);">Essential (Security)</td>
+              <td style="padding:8px;border:1px solid var(--border);">Session</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top:24px;">4. Analytics and Advertising Cookies (Google Signals)</h3>
         <p>This website utilizes <strong>Google Analytics Advertising Features (Google Signals)</strong>. Google Signals compiles aggregated, cross-device data and demographic profiling (such as age groups, gender, and buyer interest groups) from users who are logged into their Google Accounts and have explicitly turned on Ads Personalization.</p>
         <p style="margin-top:16px;">We and third-party vendors (including Google) use first-party cookies to optimize ad delivery, measure conversion actions on our forms, and analyze overall user engagement paths.</p>
         <p style="margin-top:16px;"><strong>User Control &amp; Opt-Out:</strong> You can control your ad experiences or fully opt out of this tracking layer at any time by modifying your active choices on <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google's Ads Settings page</a> or by installing the official <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+        <p style="margin-top:16px;"><strong>Manage Cookie Preferences:</strong> You can change your cookie consent preferences at any time by clicking the button below to reopen the consent banner:</p>
+        <p style="margin-top:12px;"><button onclick="if(window.silktideConsentManager){silktideConsentManager.open();}else{alert('Consent manager is loading. Please try again shortly.');}" style="background:var(--primary);color:var(--white);border:none;padding:10px 24px;border-radius:var(--radius);cursor:pointer;font-size:15px;font-weight:600;">Manage Cookie Preferences</button></p>
 
-        <h3 style="margin-top:24px;">4. Data Retention and Deletion</h3>
+        <h3 style="margin-top:24px;">5. Data Retention and Deletion</h3>
         <p>We retain your personal corporate data only as long as necessary to provide you with the requested B2B equipment metrics, maintain essential business logs, or comply with international commercial legal obligations. When data is no longer structurally required for your corporate inquiry, it is securely deleted or completely anonymized.</p>
 
-        <h3 style="margin-top:24px;">5. Regional Privacy Rights &amp; Compliance</h3>
-        <p><strong>United States:</strong> We do not sell your personal or corporate information. We utilize Google's Restricted Data Processing (RDP) technical flags to limit backend data usage for opted-out regional sessions and natively recognize automated Global Privacy Control (GPC) signals sent by your browser.</p>
-        <p style="margin-top:16px;"><strong>South Korea &amp; Singapore:</strong> All data collected via quote forms is processed transparently based on your explicit intent to initiate a business inquiry. Advanced tracking tags are configured to prevent data leakage or "pre-scraping" before a form is successfully submitted.</p>
-        <p style="margin-top:16px;"><strong>European Union (EEA) / UK Traffic:</strong> While our primary commercial target markets are outside the EEA, any incidental traffic originating from these regions is routed through regional consent filters. High-tier tracking tags are restricted unless explicit opt-in choice parameters are fulfilled by the visitor.</p>
+        <h3 style="margin-top:24px;">6. Regional Privacy Rights &amp; Compliance</h3>
+        <p><strong>European Union (EEA) / United Kingdom (GDPR):</strong> EU/EEA and UK visitors are presented with a strict opt-in consent banner. Tracking tags remain blocked until explicit consent is granted. You have the right to access, rectify, erase, restrict processing, and data portability. Legal basis: Consent (Article 6.1.a). Supervisory authority complaints can be filed with your local Data Protection Authority.</p>
+        <p style="margin-top:16px;"><strong>Brazil (LGPD):</strong> Brazilian visitors are subject to the same strict opt-in protocol as GDPR regions. You have the right to confirmation of processing, access, correction, anonymization, and portability of your data. Legal basis: Consent (Article 7.I). Complaints may be filed with the ANPD (Autoridade Nacional de Proteção de Dados).</p>
+        <p style="margin-top:16px;"><strong>Switzerland (revised FADP):</strong> Swiss visitors receive strict opt-in consent. Your rights under the revised Federal Act on Data Protection include access, rectification, and deletion. Complaints may be directed to the FDPIC (Federal Data Protection and Information Commissioner).</p>
+        <p style="margin-top:16px;"><strong>South Africa (POPIA):</strong> South African visitors receive strict opt-in consent. You have the right to access, correction, deletion, and to object to processing. Complaints may be filed with the Information Regulator of South Africa.</p>
+        <p style="margin-top:16px;"><strong>South Korea (PIPA) &amp; Singapore (PDPA):</strong> Visitors from these jurisdictions receive strict opt-in consent. All data collected via quote forms is processed transparently based on your explicit intent to initiate a business inquiry.</p>
+        <p style="margin-top:16px;"><strong>United States (CCPA/CPRA &amp; State Laws):</strong> We operate on a notice-opt-out basis. We do not sell your personal or corporate information. We utilize Google's Restricted Data Processing (RDP) technical flags and natively recognize automated Global Privacy Control (GPC) signals sent by your browser. California residents have the right to know, delete, correct, and opt out of the sharing of personal information. Applicable states: California, Virginia, Colorado, Connecticut, Utah, and others with comprehensive privacy laws.</p>
+        <p style="margin-top:16px;"><strong>Canada (PIPEDA):</strong> Canadian visitors receive notice-opt-out consent. You have the right to access and challenge the accuracy of your personal information. Complaints may be filed with the Office of the Privacy Commissioner of Canada.</p>
+        <p style="margin-top:16px;"><strong>Japan (APPI):</strong> Japanese visitors receive notice-opt-out consent. You have the right to disclosure, correction, suspension of use, and deletion of your personal information under the Act on the Protection of Personal Information.</p>
+        <p style="margin-top:16px;"><strong>Australia (Privacy Act 1988):</strong> Australian visitors receive notice-opt-out consent. You have the right to access and correct your personal information. Complaints may be filed with the Office of the Australian Information Commissioner (OAIC).</p>
+        <p style="margin-top:16px;"><strong>Rest of World:</strong> Visitors from all other countries receive tracking by default with the ability to manage preferences via our consent banner. We apply the same data protection standards regardless of your location.</p>
 
-        <h3 style="margin-top:24px;">6. Contact Us &amp; Data Rights Requests</h3>
+        <h3 style="margin-top:24px;">7. Contact Us &amp; Data Rights Requests</h3>
         <p>If you have any questions about this Privacy Policy, or if you wish to submit a formal request to access, correct, or permanently delete your personal information from our active databases, please utilize our dedicated internal request channel.</p>
         <p style="margin-top:16px;">To file a request, <a href="/data-request.html" style="color:var(--accent);font-weight:700;">please click here to access our secure Data Request Form</a>. Fill out the mandatory verification fields, and our technical compliance team will contact you directly to process your request within the legally required timeframe.</p>
 
@@ -152,6 +208,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-bottom">
         &copy; 2024 Ads Tutorials All Rights Reserved.
         <a href="/privacy.html" style="color:var(--white);margin-left:12px;" class="t-ftr-privacy">Privacy Policy</a>
+        <a href="#" onclick="if(window.silktideConsentManager){silktideConsentManager.open();return false;}" style="color:var(--white);margin-left:12px;" class="t-ftr-cookies">Manage Cookie Preferences</a>
+        <a href="#" onclick="if(window.silktideConsentManager){silktideConsentManager.open();return false;}" style="color:var(--white);margin-left:12px;" class="t-ftr-dns">Do Not Sell or Share My Personal Information</a>
       </div>
     </div>
   </footer>
