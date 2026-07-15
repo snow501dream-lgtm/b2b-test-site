@@ -143,7 +143,7 @@ new_tags = [
 
     tag('Consent - Silktide Initialization', 'html', [
         tpl('html', html_v), boo('supportDocumentWrite', 'true')
-    ], ['2147479573', '33'], opt='ONCE_PER_LOAD')
+    ], ['2147479573', '33'])
 ]
 
 cv['tag'] = cv['tag'] + new_tags
