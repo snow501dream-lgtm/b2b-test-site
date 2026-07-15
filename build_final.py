@@ -78,11 +78,12 @@ new_vars = [
 ]
 cv['variable'] = cv['variable'] + new_vars
 
-# ── 3 triggers ──
+# ── 4 triggers ──
 for tid, tname, event in [
     ('30', 'cta_click trigger', 'cta_click'),
     ('31', 'inquiry_click trigger', 'inquiry_click'),
-    ('32', 'Custom Event - stcm_consent_update', 'stcm_consent_update')
+    ('32', 'Custom Event - stcm_consent_update', 'stcm_consent_update'),
+    ('33', 'Custom Event - geo_resolved', 'geo_resolved')
 ]:
     cv['trigger'].append({
         'accountId': AID, 'containerId': CID,
@@ -91,7 +92,7 @@ for tid, tname, event in [
     })
 
 # ── 5 tags ──
-html_v = '<script>\n(function(){\n  var a = \'{{regex - legal region archetype}}\';\n  if(a === \'none\') return;\n\n  function tryInit(n){\n    n = (n||0)+1;\n    if(window.silktideConsentManager&&window.silktideConsentManager.init){\n      window.silktideConsentManager.init({\n        mode: \'{{lookup - silktide mode}}\',\n        text: { title: \'Privacy Settings\', description: \'{{lookup - silktide banner description}}\' },\n        consentTypes: [\n          { id: \'analytics\', label: \'Analytics\', gtag: \'analytics_storage\' },\n          { id: \'advertising\', label: \'Marketing\', gtag: [\'ad_storage\',\'ad_user_data\',\'ad_personalization\'] }\n        ],\n        options: { expandedByDefault: a === \'strict-opt-in\' }\n      });\n    }else if(n<30){setTimeout(function(){tryInit(n);},100);}\n  }\n  tryInit();\n})();\n</script>'
+html_v = '<script>\n(function(){\n  var a = \'{{regex - legal region archetype}}\';\n  if(!a || a === \'undefined\' || a === \'none\') return;\n\n  function tryInit(n){\n    n = (n||0)+1;\n    if(window.silktideConsentManager&&window.silktideConsentManager.init){\n      window.silktideConsentManager.init({\n        mode: \'{{lookup - silktide mode}}\',\n        text: { title: \'Privacy Settings\', description: \'{{lookup - silktide banner description}}\' },\n        consentTypes: [\n          { id: \'analytics\', label: \'Analytics\', gtag: \'analytics_storage\' },\n          { id: \'advertising\', label: \'Marketing\', gtag: [\'ad_storage\',\'ad_user_data\',\'ad_personalization\'] }\n        ],\n        options: { expandedByDefault: a === \'strict-opt-in\' }\n      });\n    }else if(n<30){setTimeout(function(){tryInit(n);},100);}\n  }\n  tryInit();\n})();\n</script>'
 
 def consent(cv):
     return {'consentStatus': 'NEEDED', 'consentType': {'type': 'LIST', 'list': [{'type': 'TEMPLATE', 'value': cv}]}}
@@ -142,7 +143,7 @@ new_tags = [
 
     tag('Consent - Silktide Initialization', 'html', [
         tpl('html', html_v), boo('supportDocumentWrite', 'true')
-    ], ['2147479573'], opt='ONCE_PER_LOAD')
+    ], ['2147479573', '33'], opt='ONCE_PER_LOAD')
 ]
 
 cv['tag'] = cv['tag'] + new_tags
