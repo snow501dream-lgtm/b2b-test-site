@@ -433,7 +433,7 @@ img {
 /* ---------- WhatsApp Float ---------- */
 .whatsapp-float {
   position: fixed;
-  bottom: 28px;
+  bottom: 120px;
   right: 28px;
   z-index: 200;
   display: flex;
