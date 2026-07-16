@@ -148,20 +148,18 @@ new_tags = [
 
 cv['tag'] = cv['tag'] + new_tags
 
-# ── Consent for ALL tracking tags. Trigger 32 ONLY for googtag (config) ──
+# ── Advanced Mode: remove consent from gaawe/awct, keep googtag clean ──
 for tag in cv['tag']:
     ttype = tag.get('type', '')
     name = tag.get('name', '')
     if ttype in ('gclidw', 'html'):
         continue
-    elif ttype in ('awct',) or 'ads' in name.lower() or 'AW' in name:
-        cval = 'ad_storage'
-    elif ttype in ('googtag', 'gaawe'):
-        cval = 'analytics_storage'
+    elif ttype in ('googtag', 'gaawe', 'awct'):
+        # Advanced Mode: no additional consent, tags fire regardless
+        # Google backend handles cookieless pings based on consent signals
+        tag['consentSettings'] = {'consentStatus': 'NOT_SET'}
     else:
         continue
-
-    tag['consentSettings'] = consent(cval)
 
     # Only googtag config tags need trigger 32 (consent update)
     if ttype == 'googtag':
@@ -169,9 +167,9 @@ for tag in cv['tag']:
         if '32' not in ft:
             ft.append('32')
             tag['firingTriggerId'] = ft
-        print(f'  +consent({cval}) +t32: {name}')
+        print(f'  +t32: {name}')
     else:
-        print(f'  +consent({cval}): {name}')
+        print(f'  (no consent): {name}')
 
 # ── Save ──
 out_path = r'C:\Users\huhu\Desktop\json\GTM_complete.json'
